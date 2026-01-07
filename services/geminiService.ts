@@ -1,10 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const checkWriting = async (text: string, topic: string): Promise<any> => {
-  if (!apiKey) throw new Error("API Key missing");
+  if (!process.env.API_KEY) throw new Error("API Key missing");
 
   const prompt = `
     Act as a strict TOEIC Writing Examiner. 
@@ -46,7 +45,7 @@ export const checkWriting = async (text: string, topic: string): Promise<any> =>
 };
 
 export const getSpeakingQuestion = async (): Promise<string> => {
-  if (!apiKey) return "Describe a picture of a busy office."; // Fallback
+  if (!process.env.API_KEY) return "Describe a picture of a busy office."; // Fallback
 
   try {
     const response = await ai.models.generateContent({
@@ -60,7 +59,7 @@ export const getSpeakingQuestion = async (): Promise<string> => {
 };
 
 export const checkSpeaking = async (question: string, transcript: string): Promise<any> => {
-  if (!apiKey) throw new Error("API Key missing");
+  if (!process.env.API_KEY) throw new Error("API Key missing");
 
   const prompt = `
     Question: "${question}"
@@ -101,7 +100,7 @@ export const checkSpeaking = async (question: string, transcript: string): Promi
 };
 
 export const generateDailyTopic = async (): Promise<string> => {
-    if (!apiKey) return "Business Travel";
+    if (!process.env.API_KEY) return "Business Travel";
     try {
         const response = await ai.models.generateContent({
             model: 'gemini-3-flash-preview',
