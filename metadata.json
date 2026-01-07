@@ -1,0 +1,7 @@
+{
+  "name": "DuoTOEIC Tracker",
+  "description": "A collaborative English learning tracker for two users focusing on 4 TOEIC skills with AI-powered feedback.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
